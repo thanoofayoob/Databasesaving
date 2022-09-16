@@ -102,16 +102,6 @@ class MyHomePage extends GetView<HomePageController> {
                                   );
                                 }),
                       ),
-                IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: () {
-                      controller.setTheDataToDataBase();
-                    }),
-                IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      controller.getTheDataFromDataBase();
-                    }),
               ],
             ),
           ),

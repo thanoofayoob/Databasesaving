@@ -23,9 +23,9 @@ class HomePageController extends GetxController {
   Future<void> onInit() async {
     // TODO: implement onInit
     super.onInit();
-    apiCallForHomePage();
+    // apiCallForHomePage();
 
-    // checkWeatherDataIsAvailable();
+    checkWeatherDataIsAvailable();
   }
 
   void searchStop() {
@@ -41,7 +41,7 @@ class HomePageController extends GetxController {
     update();
     if (val != '') {
       homePageList.forEach((data) {
-        if (data.name!.contains(val) || data.email!.contains(val)) {
+        if (data.name!.toUpperCase().contains(val.toUpperCase()) || data.email!.toUpperCase()!.contains(val.toUpperCase())) {
           homePageListForSearch.add(data);
         }
       });
@@ -101,6 +101,7 @@ class HomePageController extends GetxController {
     if (res.status == ApiResponseStatus.completed) {
       try {
         homePageList = res.data!;
+        setTheDataToDataBase();
         update();
       } catch (e) {
         cPrint(e.toString());
