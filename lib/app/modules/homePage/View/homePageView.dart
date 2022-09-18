@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_test/app/modules/homePage/Controller/homePageController.dart';
 import 'package:machine_test/app/modules/homePage/View/innerPage.dart';
-import 'package:machine_test/app/utils/cPrint.dart';
 
 class MyHomePage extends GetView<HomePageController> {
   const MyHomePage({Key? key}) : super(key: key);
@@ -41,67 +40,68 @@ class MyHomePage extends GetView<HomePageController> {
                     ],
                   ),
                 ),
-                logic.homePageLoading
-                    ? CircularProgressIndicator()
-                    : Expanded(
-                        child: logic.searchStarted
-                            ? ListView.separated(
-                                separatorBuilder: (q, i) {
-                                  return const Divider();
-                                },
-                                itemCount: logic.homePageListForSearch.length,
-                                itemBuilder: (_, i) {
-                                  return ListTile(
-                                    onTap: () {
-                                      Get.to(InnerPage(data: logic.homePageListForSearch[i]));
-                                    },
-                                    subtitle: logic.homePageListForSearch[i].company == null
-                                        ? Text('company name not available')
-                                        : Text(logic.homePageListForSearch[i].company!.name! ?? ''),
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 18,
-                                      child: logic.homePageListForSearch[i].profileImage == null
-                                          ? Container()
-                                          : ImageWidget(
-                                              url: logic.homePageListForSearch[i].profileImage!,
-                                              radius: 15,
-                                              height: 30,
-                                              width: 30,
-                                            ),
-                                    ),
-                                    title: Text(logic.homePageListForSearch[i].name!),
-                                  );
-                                })
-                            : ListView.separated(
-                                separatorBuilder: (q, i) {
-                                  return const Divider();
-                                },
-                                itemCount: logic.homePageList.length,
-                                itemBuilder: (_, i) {
-                                  return ListTile(
-                                    onTap: () {
-                                      Get.to(InnerPage(data: logic.homePageList[i]));
-                                    },
-                                    subtitle: logic.homePageList[i].company == null
-                                        ? Text('company name not available')
-                                        : Text(logic.homePageList[i].company!.name! ?? ''),
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 18,
-                                      child: logic.homePageList[i].profileImage == null
-                                          ? Container()
-                                          : ImageWidget(
-                                              url: logic.homePageList[i].profileImage!,
-                                              radius: 15,
-                                              height: 30,
-                                              width: 30,
-                                            ),
-                                    ),
-                                    title: Text(logic.homePageList[i].name!),
-                                  );
-                                }),
-                      ),
+                // logic.homePageLoading
+                // ? CircularProgressIndicator()
+                // :
+                Expanded(
+                  child: logic.searchStarted
+                      ? ListView.separated(
+                          separatorBuilder: (q, i) {
+                            return const Divider();
+                          },
+                          itemCount: logic.homePageListForSearch.length,
+                          itemBuilder: (_, i) {
+                            return ListTile(
+                              onTap: () {
+                                Get.to(InnerPage(data: logic.homePageListForSearch[i]));
+                              },
+                              subtitle: logic.homePageListForSearch[i].company == null
+                                  ? Text('company name not available')
+                                  : Text(logic.homePageListForSearch[i].company!.name! ?? ''),
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 18,
+                                child: logic.homePageListForSearch[i].profileImage == null
+                                    ? Container()
+                                    : ImageWidget(
+                                        url: logic.homePageListForSearch[i].profileImage!,
+                                        radius: 15,
+                                        height: 30,
+                                        width: 30,
+                                      ),
+                              ),
+                              title: Text(logic.homePageListForSearch[i].name!),
+                            );
+                          })
+                      : ListView.separated(
+                          separatorBuilder: (q, i) {
+                            return const Divider();
+                          },
+                          itemCount: logic.homePageList.length,
+                          itemBuilder: (_, i) {
+                            return ListTile(
+                              onTap: () {
+                                Get.to(InnerPage(data: logic.homePageList[i]));
+                              },
+                              subtitle: logic.homePageList[i].company == null
+                                  ? Text('company name not available')
+                                  : Text(logic.homePageList[i].company!.name! ?? ''),
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 18,
+                                child: logic.homePageList[i].profileImage == null
+                                    ? Container()
+                                    : ImageWidget(
+                                        url: logic.homePageList[i].profileImage!,
+                                        radius: 15,
+                                        height: 30,
+                                        width: 30,
+                                      ),
+                              ),
+                              title: Text(logic.homePageList[i].name!),
+                            );
+                          }),
+                ),
               ],
             ),
           ),

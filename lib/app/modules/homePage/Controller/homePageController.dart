@@ -54,7 +54,6 @@ class HomePageController extends GetxController {
 
   void checkWeatherDataIsAvailable() async {
     var result = await getTheDataFromDataBase();
-    cPrint(result);
     if (result == false) {
       apiCallForHomePage();
     }
@@ -62,8 +61,10 @@ class HomePageController extends GetxController {
 
   void setTheDataToDataBase() async {
     try {
-      var box = await Hive.openBox<List<GeneralResponse>>('myBox');
-      box.put('homePageData', homePageList);
+      var box = await Hive.openBox<GeneralResponse>('myBox1');
+
+      box.addAll(homePageList);
+      // box.put('homePageData', homePageList);
     } catch (e) {
       cPrint(e.toString());
     }
@@ -73,14 +74,12 @@ class HomePageController extends GetxController {
     homePageLoading = true;
     update();
     try {
-      var box = await Hive.openBox<List<GeneralResponse>>('myBox');
+      var box = await Hive.openBox<GeneralResponse>('myBox1');
       List<GeneralResponse>? result = [];
 
-      result = box.get('homePageData');
+      result = box.values.toList();
 
-      // cPrint('Name: $result');
-
-      if (result!.isEmpty) {
+      if (result.isEmpty) {
         return false;
       } else {
         homePageList = result;

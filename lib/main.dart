@@ -18,7 +18,10 @@ void main() async {
   final documentDirectory = await getApplicationDocumentsDirectory();
 
   Hive.init(documentDirectory.path);
-  Hive.registerAdapter(UserAdapter());
+  Hive.registerAdapter(GeneralResponseAdapter());
+  Hive.registerAdapter(AddressAdapter());
+  Hive.registerAdapter(GeoAdapter());
+  Hive.registerAdapter(CompanyAdapter());
 
   runApp(const MyApp());
 }

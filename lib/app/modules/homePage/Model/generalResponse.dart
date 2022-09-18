@@ -1,16 +1,28 @@
-class GeneralResponse {
-  int? id;
-  String? name;
-  String? username;
-  String? email;
-  String? profileImage;
-  Address? address;
-  String? phone;
-  String? website;
-  Company? company;
+import 'package:hive/hive.dart';
+part 'generalResponse.g.dart';
 
-  GeneralResponse(read,
-      {this.id, this.name, this.username, this.email, this.profileImage, this.address, this.phone, this.website, this.company});
+@HiveType(typeId: 0)
+class GeneralResponse extends HiveObject {
+  @HiveField(0)
+  int? id;
+  @HiveField(1)
+  String? name;
+  @HiveField(2)
+  String? username;
+  @HiveField(3)
+  String? email;
+  @HiveField(4)
+  String? profileImage;
+  @HiveField(5)
+  Address? address;
+  @HiveField(6)
+  String? phone;
+  @HiveField(7)
+  String? website;
+  @HiveField(8)
+  Company? company;
+  @HiveField(9)
+  GeneralResponse({this.id, this.name, this.username, this.email, this.profileImage, this.address, this.phone, this.website, this.company});
 
   GeneralResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -43,11 +55,17 @@ class GeneralResponse {
   }
 }
 
+@HiveType(typeId: 1)
 class Address {
+  @HiveField(0)
   String? street;
+  @HiveField(1)
   String? suite;
+  @HiveField(2)
   String? city;
+  @HiveField(3)
   String? zipcode;
+  @HiveField(4)
   Geo? geo;
 
   Address({this.street, this.suite, this.city, this.zipcode, this.geo});
@@ -73,8 +91,11 @@ class Address {
   }
 }
 
+@HiveType(typeId: 2)
 class Geo {
+  @HiveField(0)
   String? lat;
+  @HiveField(1)
   String? lng;
 
   Geo({this.lat, this.lng});
@@ -92,9 +113,13 @@ class Geo {
   }
 }
 
+@HiveType(typeId: 3)
 class Company {
+  @HiveField(0)
   String? name;
+  @HiveField(1)
   String? catchPhrase;
+  @HiveField(2)
   String? bs;
 
   Company({this.name, this.catchPhrase, this.bs});

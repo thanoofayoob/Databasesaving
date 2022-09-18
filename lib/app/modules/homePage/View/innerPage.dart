@@ -22,12 +22,14 @@ class InnerPage extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 52,
                   backgroundColor: Colors.white,
-                  child: ImageWidget(
-                    url: data.profileImage! ?? "",
-                    radius: 50,
-                    height: 80,
-                    width: 80,
-                  ),
+                  child: data.profileImage == null
+                      ? SizedBox()
+                      : ImageWidget(
+                          url: data.profileImage! ?? "",
+                          radius: 50,
+                          height: 80,
+                          width: 80,
+                        ),
                 ),
               ),
               Text(
@@ -46,10 +48,12 @@ class InnerPage extends StatelessWidget {
                 data.email! ?? '',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
               ),
-              Text(
-                data.phone! ?? '',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
-              ),
+              data.phone == null
+                  ? SizedBox()
+                  : Text(
+                      data.phone! ?? '',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                    ),
               Text(
                 data.username! ?? '',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
@@ -78,14 +82,18 @@ class InnerPage extends StatelessWidget {
                 'Company Details',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              Text(
-                data.company!.name! ?? '',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
-              ),
-              Text(
-                data.company!.catchPhrase! ?? '',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
-              ),
+              data.company == null
+                  ? SizedBox()
+                  : Text(
+                      data.company!.name! ?? '',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                    ),
+              data.company == null
+                  ? SizedBox()
+                  : Text(
+                      data.company!.catchPhrase! ?? '',
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal),
+                    ),
             ],
           ),
         ),
